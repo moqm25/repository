@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import * as d3 from "d3";
+import BarChart from "./BarChart";
+import Scatter from "./Scatter";
+import TIPS from "./SampleDataset.csv";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+	state = {
+		data: [],
+	};
+
+	componentDidMount() {
+		d3.csv(TIPS).then((data) => {
+			this.setState({
+				data: data,
+			});
+		});
+	}
+
+	render() {
+		const { data } = this.state;
+
+		return (
+			<div>
+				<BarChart data={data} />
+				<Scatter data={data} />
+			</div>
+		);
+	}
 }
 
 export default App;
