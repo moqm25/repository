@@ -34,7 +34,7 @@ class ScatterPlot extends Component {
 			.enter()
 			.append("circle")
 			.attr("cx", (d) => d.x * 10)
-			.attr("cy", (d) => d.y * 10)
+			.attr("cy", (d) => 500 - d.y * 10)
 			.attr("r", 5)
 			.attr("fill", "blue");
 	}
